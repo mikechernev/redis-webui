@@ -1,0 +1,38 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+
+
+#key-container ul.key-list {
+	list-style: none;
+	overflow: hidden;
+}
+
+#key-container ul.key-list li {
+	position: relative;
+	border: 1px solid #e4e4e4;
+	margin: 5px;
+	padding-left: 10px;
+	padding-right: 60px;
+}
+
+#key-container ul.key-list li a {
+	display: block;
+	line-height: 50px;
+	font-size: 18px;
+	text-decoration: none;
+}
+
+#key-container ul.key-list li .key-value {
+	overflow: hidden;
+}
+
+#key-container ul.key-list li button.btn-delete {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	bottom: 5px;
+}
