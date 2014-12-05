@@ -27,7 +27,7 @@
 }
 
 #key-container ul.key-list li .key-value {
-	overflow: hidden;
+	overflow: auto;
 }
 
 #key-container ul.key-list li button.btn-delete {
