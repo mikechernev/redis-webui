@@ -85,7 +85,7 @@ jQuery('#key-container').on('click', 'ul.key-list li a', function (e) {
 		return false;
 	}
 
-	ajaxCall = jQuery.ajax({
+	jQuery.ajax({
 		type: 'POST',
 		url: 'ajax/get_key_value.php',
 		data: {key: this.text}
@@ -104,7 +104,7 @@ jQuery('#key-container').on('click', 'ul.key-list li a', function (e) {
 
 		$li.addClass('checked')
 		$this.siblings('.key-value').html(html);
-	})
+	});
 
 	return false;
 });
@@ -112,9 +112,9 @@ jQuery('#key-container').on('click', 'ul.key-list li a', function (e) {
 
 jQuery('#key-container').on('click', 'ul.key-list li button.btn-delete', function (e) {
 
-	var $link = jQuery(this).siblings('a'),
+	var $link = jQuery(this).siblings('a');
 
-	ajaxCall = jQuery.ajax({
+	jQuery.ajax({
 		type: 'POST',
 		url: 'ajax/delete_key.php',
 		data: {key: $link.text()}
@@ -128,7 +128,40 @@ jQuery('#key-container').on('click', 'ul.key-list li button.btn-delete', functio
 			return;
 		}
 		$link.parent().remove();
-	})
+	});
 
 	return false;
+});
+
+jQuery('#db-select').change(function () {
+	console.log(jQuery(this).val());
+	var newDb = jQuery(this).val();
+	jQuery.ajax({
+		type: 'POST',
+		url: 'ajax/change_db.php',
+		data: {db: newDb}
+	}).success(function (response) {
+		if (response.success !== true) {
+			alert(response.error || 'An error occured!');
+			return;
+		}
+	});
+
+})
+
+jQuery.ajax({
+	type: 'POST',
+	url: 'ajax/get_dbs.php'
+}).success(function (response) {
+	if (response.success !== true) {
+		setAlert(response.error || 'An error occured!');
+		return;
+	}
+	var dbs = response.result,
+		$dbSelect = jQuery('#db-select'),
+		selectedString;
+	for (var i in dbs) {
+		selectedString = (dbs[i] == 'selected') ? 'selected' : '';
+		$dbSelect.append('<option value="' + i + '" '+ selectedString+'>' + i + '</option>');
+	}
 });
