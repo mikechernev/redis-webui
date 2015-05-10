@@ -16,7 +16,7 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH'])
         exit;
     }
 
-    setcookie("selected_db", $_POST['db'], time() + 60 * 60 * 24 * 365);
+    setcookie('selected_db', $_POST['db'], time() + 60 * 60 * 24 * 365);
     $response['success'] = true;
     echo json_encode($response);
     exit;
