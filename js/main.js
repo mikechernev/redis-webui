@@ -66,9 +66,8 @@ deleteAll = function () {
 
 
 jQuery('#submit-redis-pattern').click(getKeys);
-jQuery('#redis-pattern').keyup(function (e) {
-}).keydown(function (e) {
-    if (e.which == 13) {
+jQuery('#redis-pattern').keydown(function (e) {
+    if (e.which === 13) {
         redisPattern = '';
         getKeys();
         e.preventDefault();
@@ -76,7 +75,7 @@ jQuery('#redis-pattern').keyup(function (e) {
 });
 jQuery('#delete-all').click(deleteAll);
 
-jQuery('#key-container').on('click', 'ul.key-list li a', function (e) {
+jQuery('#key-container').on('click', 'ul.key-list li a', function () {
 
     var $this = jQuery(this),
         $li = $this.parent();
@@ -112,7 +111,7 @@ jQuery('#key-container').on('click', 'ul.key-list li a', function (e) {
 });
 
 
-jQuery('#key-container').on('click', 'ul.key-list li button.btn-delete', function (e) {
+jQuery('#key-container').on('click', 'ul.key-list li button.btn-delete', function () {
 
     var $link = jQuery(this).siblings('a');
 
@@ -164,7 +163,7 @@ jQuery.ajax({
         selectedString;
     for (var i in dbs) {
         if (dbs.hasOwnProperty(i)) {
-            selectedString = (dbs[i] == 'selected') ? 'selected' : '';
+            selectedString = (dbs[i] === 'selected') ? 'selected' : '';
             $dbSelect.append('<option value="' + i + '" '+ selectedString+'>' + i + '</option>');
         }
     }

@@ -21,7 +21,8 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH'])
 
     $dbs = array_flip(preg_grep("/db\d+/", array_keys($redis->info())));
 
-    $selected_db = (isset($_COOKIE['selected_db']) && !empty($_COOKIE['selected_db'])) ? $_COOKIE['selected_db'] : 'db0';
+    $selected_db = (isset($_COOKIE['selected_db']) && !empty($_COOKIE['selected_db'])) ?
+        $_COOKIE['selected_db'] : 'db0';
     $dbs[$selected_db] = 'selected';
     $response['success'] = true;
     $response['result'] = $dbs;

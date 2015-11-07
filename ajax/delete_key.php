@@ -19,7 +19,8 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH'])
     $key = $_POST['key'];
     $redis = new \Redis();
     $redis->pconnect('localhost');
-    $selected_db = (isset($_COOKIE['selected_db']) && !empty($_COOKIE['selected_db'])) ? $_COOKIE['selected_db'] : 'db0';
+    $selected_db = (isset($_COOKIE['selected_db']) && !empty($_COOKIE['selected_db'])) ?
+        $_COOKIE['selected_db'] : 'db0';
     $redis->select(trim($selected_db, 'db'));
     $response['result'] = $redis->delete($key);
 
