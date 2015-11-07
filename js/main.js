@@ -40,11 +40,13 @@ getKeys = function () {
             keys = response.result;
 
         for (var i in keys) {
-            $ul.append('<li><a href="javascript:void()">' + keys[i] + '</a><div class="key-value"></div>' +
-                '<button type="button" class="btn btn-danger btn-delete">' +
-                    '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>'+
-                '</button>' +
-                '</li>');
+            if (keys.hasOwnProperty(i)) {
+                $ul.append('<li><a href="javascript:void()">' + keys[i] + '</a><div class="key-value"></div>' +
+                    '<button type="button" class="btn btn-danger btn-delete">' +
+                        '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>'+
+                    '</button>' +
+                    '</li>');
+            }
         }
         jQuery('#key-container').html($ul).prepend(jQuery('<div>').addClass('result-number').text(response.result.length + ' keys found.'));
         $deleteAll.removeAttr('disabled');
@@ -161,7 +163,9 @@ jQuery.ajax({
         $dbSelect = jQuery('#db-select'),
         selectedString;
     for (var i in dbs) {
-        selectedString = (dbs[i] == 'selected') ? 'selected' : '';
-        $dbSelect.append('<option value="' + i + '" '+ selectedString+'>' + i + '</option>');
+        if (dbs.hasOwnProperty(i)) {
+            selectedString = (dbs[i] == 'selected') ? 'selected' : '';
+            $dbSelect.append('<option value="' + i + '" '+ selectedString+'>' + i + '</option>');
+        }
     }
 });
